@@ -5,14 +5,13 @@
 
       <p :class="{ done: checkBtnState }" class="mx-2">{{ text }}</p>
     </div>
-
-    <button @click="$emit('itemDelete')" class="bg-red-500 text-white p-2">
-      Delete
-    </button>
+<TheButton  @click="$emit('itemDelete')" :btn="active"  />
+  
   </div>
 </template>
 <script setup>
 import { ref } from "vue";
+import TheButton from "./TheButton.vue"
 
 defineEmits("itemDelete");
 const props = defineProps({
@@ -20,22 +19,38 @@ const props = defineProps({
   status: Boolean,
   saveData: Function,
   getter: Function,
-  list:Array
+  list:Array,
+  id:Number
 });
 const checkBtnState = ref(props.status);
 
-const count = ref(0);
 function checking() {
-  const item = props.list.find((item) => item.text === props.text);
+  const item = props.list.find((item) => item.id === props.id);
   if (item) {
     item.status = checkBtnState.value;
     props.saveData();
   }
 }
+
+const active = ref('deleteBtn')
+
 </script>
 
 <style>
 .done {
   text-decoration: line-through;
+}
+.deleteBtn{
+  background-color: red;
+  color: white;
+  padding: 3px;
+}
+.active{
+  background-color: red;
+}
+.undoBtn{
+  background-color: rgb(255, 230, 2);
+  color: rgb(75, 74, 74);
+  padding: 3px;
 }
 </style>

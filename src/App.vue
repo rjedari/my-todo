@@ -1,5 +1,5 @@
 <template>
-  <InputForm @adding="addItem" />{{ getter() }}
+  <InputForm @adding="addItem" />
   <div v-for="({ text, status, id }, index) in list" :key="id">
     <TodoList
       @itemDelete="itemDelete(index)"
@@ -8,6 +8,7 @@
       :saveData="saveData"
       :getter="getter"
       :list="list"
+      :id="id"
     />
   </div>
 </template>
@@ -33,9 +34,10 @@ function getter() {
     });
   }
 }
-
+getter()
+let id = 1
 const addItem = (text) => {
-  list.unshift({ text, status: false, id: Math.random() });
+  list.unshift({ text, status: false, id:id++ });
   saveData();
 };
 

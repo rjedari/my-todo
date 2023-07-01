@@ -1,7 +1,7 @@
 <template>
   <div>
-    <button :class="props.btn">
-      Delete
+    <button  :class="props.btn">
+      {{ props.text }}
     </button>
   </div>
 </template>
@@ -10,7 +10,7 @@
 // defineEmits(["greenItemDelete"])
 import { defineProps } from 'vue'
 
-const props = defineProps({btn:String})
+const props = defineProps({btn:String,text:String})
 
 </script>
 

@@ -5,7 +5,7 @@
 
       <p :class="{ done: checkBtnState }" class="mx-2">{{ text }}</p>
     </div>
-<TheButton  @click="$emit('itemDelete')" :btn="active"  />
+<TheButton  @click="$emit('itemDelete')" :btn="active" :text="textBtn" />
   
   </div>
 </template>
@@ -23,7 +23,7 @@ const props = defineProps({
   id:Number
 });
 const checkBtnState = ref(props.status);
-
+const input = ref("")
 function checking() {
   const item = props.list.find((item) => item.id === props.id);
   if (item) {
@@ -33,6 +33,7 @@ function checking() {
 }
 
 const active = ref('deleteBtn')
+const textBtn=ref("Delete")
 
 </script>
 

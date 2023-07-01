@@ -6,7 +6,7 @@
       type="text"
       v-model="text"
     />
-    <TheButton @click="$emit('addItem')" :btn="addBtn" type="submit" :text="textBtn"/>
+    <TheButton  :btn="addBtn" type="submit" :text="textBtn"/>
 
     <!-- <button class="m-5 border border-gray-200" >Add</button> -->
   </form>

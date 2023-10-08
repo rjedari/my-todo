@@ -6,13 +6,13 @@
       type="text"
       v-model="text"
     />
-    <TheButton :btn-class="addBtn" type="submit" :text="textBtn">Add</TheButton>
+    <AButton :btn-class="addBtn" type="submit" :text="textBtn">Add</AButton>
   </form>
 </template>
 
 <script setup lang="ts">
 import { ref, defineEmits } from "vue";
-import TheButton from "@/components/AButton.vue";
+import AButton from "@/components/AButton.vue";
 
 const emit = defineEmits(["adding"]);
 const text = ref<string>("");

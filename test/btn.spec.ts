@@ -1,15 +1,15 @@
 import { mount } from "@vue/test-utils";
-import TheButton from "@/components/AButton.vue";
+import AButton from "@/components/AButton.vue";
 
-const buttonFactory = (inputs: InstanceType<typeof TheButton>) => {
-  const wrapper = mount(TheButton, {
+export const buttonFactory = (inputs: InstanceType<typeof AButton>) => {
+  const wrapper = mount(AButton, {
     props: { btnClass: '' },
     ...inputs
   });
   return wrapper
 }
 
-describe("TheButton", () => {
+describe("AButton", () => {
   it("renders the button with the correct class", () => {
     const btnClass = "addBtn";
     const wrapper = buttonFactory({props: { btnClass },})

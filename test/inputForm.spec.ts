@@ -24,10 +24,10 @@ describe("InputForm", () => {
 
     expect(wrapper.find("button").classes()).toContain(btnClass);
   });
-  //or
-  it("renders the button with the correcr class with snapshot", () => {
-    const btnClass = '<AButton :btn-class="addBtn" /> ';
-    const wrapper = mount(AButtonVue)
-    expect (wrapper.element).toMatchSnapshot(btnClass)
-  });
+  //this part is only for self practicing 
+  // it("renders the button with the correcr class with snapshot", () => {
+  //   const btnClass = '<AButton :btn-class="addBtn"/>';
+  //   const wrapper = mount(AButtonVue)
+  //   expect (wrapper.element).toMatchSnapshot(btnClass)
+  // });
 });

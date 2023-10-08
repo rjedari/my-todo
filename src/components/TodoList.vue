@@ -3,27 +3,43 @@
     <div class="flex item center m-2">
       <input v-model="checkBtnState" @change="checking" type="checkbox" />
 
-      <p :class="{ done: checkBtnState }" class="mx-2">{{ text }}</p>
+      <p :class="{ done: checkBtnState }"
+             
+       class="mx-2">{{ text }}</p>
     </div>
-<TheButton  @click="$emit('itemDelete')" :btn="active" :text="textBtn" />
-  
+    <TheButton @click="$emit('item-delete')" :btn-class="active"
+      >Delete</TheButton>
+ 
   </div>
 </template>
-<script setup>
-import { ref } from "vue";
-import TheButton from "./TheButton.vue"
 
-defineEmits("itemDelete");
-const props = defineProps({
-  text: String,
-  status: Boolean,
-  saveData: Function,
-  getter: Function,
-  list:Array,
-  id:Number
-});
+<script setup lang="ts">
+import {  ref } from "vue";
+import TheButton from "@/components/AButton.vue";
+interface IProps {
+  text: string;
+  status: boolean;
+  saveData: () => void;
+  getter: Function;
+  list: {
+    id: number;
+    status: boolean;
+  }[];
+  id: number;
+}
+
+interface IEvents {
+  (event: "item-delete"): void;
+}
+
+defineEmits<IEvents>();
+
+const props = defineProps<IProps>();
 const checkBtnState = ref(props.status);
-const input = ref("")
+
+// const checkBtnState = toRef(props, "status");
+// const textClasses = computed(() => ({ done: checkBtnState }));
+
 function checking() {
   const item = props.list.find((item) => item.id === props.id);
   if (item) {
@@ -32,24 +48,23 @@ function checking() {
   }
 }
 
-const active = ref('deleteBtn')
-const textBtn=ref("Delete")
 
+const active = ref("deleteBtn");
 </script>
 
 <style>
 .done {
   text-decoration: line-through;
 }
-.deleteBtn{
+.deleteBtn {
   background-color: red;
   color: white;
   padding: 3px;
 }
-.active{
+.active {
   background-color: red;
 }
-.undoBtn{
+.undoBtn {
   background-color: rgb(255, 230, 2);
   color: rgb(75, 74, 74);
   padding: 3px;

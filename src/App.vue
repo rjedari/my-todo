@@ -13,35 +13,37 @@
   </div>
 </template>
 
-<script setup>
-import { reactive, ref } from "vue";
-import TodoList from "./components/TodoList.vue";
-import InputForm from "./components/InputForm.vue";
+<script lang="ts" setup>
+import { reactive } from "vue";
+import TodoList from "@/components/TodoList.vue";
+import InputForm from "@/components/InputForm.vue";
+import {TItem} from "./types"
 
-const list = reactive([]);
 
-function saveData() {
+const list:Array<TItem> = reactive([]);
+
+function saveData():void {
   localStorage.setItem("todoList", JSON.stringify(Array.from(list)));
 }
 
-function getter() {
+function getter():void {
   const savedData = localStorage.getItem("todoList");
   if (savedData) {
     const parsedData = JSON.parse(savedData);
     list.splice(0);
-    parsedData.forEach((item) => {
+    parsedData.forEach((item:TItem) => {
       list.push(item);
     });
   }
 }
 getter()
-let id = 1
-const addItem = (text) => {
+let id:number = 1
+const addItem = (text:string) :void=> {
   list.unshift({ text, status: false, id:id++ });
   saveData();
 };
 
-const itemDelete = (index) => {
+const itemDelete = (index: number) => {
   list.splice(index, 1);
   saveData();
 };

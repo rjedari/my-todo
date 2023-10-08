@@ -26,8 +26,8 @@ describe("InputForm", () => {
   });
   //or
   it("renders the button with the correcr class with snapshot", () => {
-    const btnClass = '<AButton :btn-class="addBtn"/> ';
+    const btnClass = '<AButton :btn-class="addBtn" /> ';
     const wrapper = mount(AButtonVue)
-    expect (wrapper.text()).toMatchSnapshot(btnClass)
+    expect (wrapper.element).toMatchSnapshot(btnClass)
   });
 });

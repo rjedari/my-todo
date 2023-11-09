@@ -8,7 +8,7 @@ export const buttonFactory = (inputs: InstanceType<typeof AButton>) => {
   });
   return wrapper
 }
-
+   
 describe("AButton", () => {
   it("renders the button with the correct class", () => {
     const btnClass = "addBtn";
@@ -26,3 +26,5 @@ describe("AButton", () => {
     expect(button.text()).toMatchSnapshot('test')
   });
 });
+//todo
+//fix empty massage adding

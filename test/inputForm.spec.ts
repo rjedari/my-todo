@@ -6,7 +6,7 @@ import AButtonVue from "@/components/AButton.vue";
 describe("InputForm", () => {
   it('emits an "adding" event when the form is submitted with text', async () => {
     const wrapper = mount(InputForm);
-
+ 
     const input = wrapper.find('input[type="text"]');
 
     await input.setValue("New Task");
@@ -17,6 +17,13 @@ describe("InputForm", () => {
       ["New Task"],
     ]);
   });
+  it('btn component renders corectly ',()=>{
+    const wrapper = mount(InputForm);
+    const btn =wrapper.findComponent(AButtonVue);
+    expect (btn.exists()).toBe(true)
+
+
+  })
 
   it("renders the button with the correct class", () => {
     const btnClass = "addBtn";
@@ -25,9 +32,10 @@ describe("InputForm", () => {
     expect(wrapper.find("button").classes()).toContain(btnClass);
   });
   //this part is only for self practicing 
-  // it("renders the button with the correcr class with snapshot", () => {
-  //   const btnClass = '<AButton :btn-class="addBtn"/>';
-  //   const wrapper = mount(AButtonVue)
-  //   expect (wrapper.element).toMatchSnapshot(btnClass)
-  // });
+
+  it("renders the button with the correcr class with snapshot", () => {
+    const btnClass = 'addBtn';
+    const wrapper = buttonFactory({ props: { btnClass: "addBtn" } });
+    expect (wrapper.element).toMatchSnapshot()
+  });
 });
